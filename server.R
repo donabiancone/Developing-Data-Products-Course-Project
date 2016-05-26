@@ -44,7 +44,6 @@ shinyServer(function(input, output) {
       setView(lng = mean(df$longitude), lat = mean(df$latitude), zoom = 11) %>%
       addMarkers(data = df, lng = ~ longitude, lat = ~ latitude, popup = df$PopUp)
   })
-  
   output$dTable <- renderDataTable({
     df[, !(names(df)) %in% "PopUp"]
   }, options = list(scrollX = TRUE))
