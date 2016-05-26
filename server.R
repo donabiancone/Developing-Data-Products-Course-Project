@@ -71,6 +71,8 @@ shinyServer(function(input, output) {
     leafletProxy("map", data=filteredData) %>%
       clearMarkers() %>%
       addMarkers(data=filteredData, lng = ~ longitude, lat = ~ latitude, popup = filteredData$PopUp)
+    
+    output$dTable <- renderDataTable(filteredData[, !(names(df)) %in% "PopUp"], options = list(scrollX = TRUE))
   })
   
   observeEvent(input$reset, {
